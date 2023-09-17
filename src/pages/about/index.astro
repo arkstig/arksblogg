@@ -1,10 +1,11 @@
 ---
 // Component Imports
-import BaseHead from '../components/BaseHead.astro';
-import BlogHeader from '../components/BlogHeader.astro';
-import BlogPostPreview from '../components/BlogPostPreview.astro';
-import Footer from '../components/Footer.astro';
-import { SITE } from '../config';
+import BaseHead from '../../components/BaseHead.astro';
+import { SITE } from '../../config';
+import BlogHeader from '../../components/BlogHeader.astro';
+import Footer from '../../components/Footer.astro';
+
+
 
 // Component Script:
 // You can write any JavaScript/TypeScript that you'd like here.
@@ -16,8 +17,6 @@ let permalink = 'https://example.com/';
 
 // Data Fetching: List all Markdown posts in the repo.
 
-let allPosts = await Astro.glob('./posts/*.md');
-allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
@@ -67,22 +66,24 @@ allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf()
 				
 			}
 
+			footer {
+				text-align: left;
+			}
 		</style>
 	</head>
 
 	<body>
 		<BlogHeader />
+
 		<div class="wrapper">
 			<main class="content">
 				<section class="intro">
 					<h1 class="latest">{title}</h1>
 					<p>{description}</p>
 				</section>
-				<section class="blogPosts" aria-label="Blog post list">
-					{allPosts.map((p) => <BlogPostPreview post={p} />)}
-				</section>
+				<p>about me</p>
 			</main>
-			
+		
 		</div>
 		<Footer />
 	</body>

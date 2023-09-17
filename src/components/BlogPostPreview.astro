@@ -10,6 +10,11 @@ const { post } = Astro.props;
 	<header>
 		<p class="publish-date">{post.frontmatter.publishDate}</p>
 		<a href={post.url}><h1 class="title">{post.frontmatter.title}</h1></a>
+		<div class="tags">
+			{Array.isArray(post.frontmatter.tags) ? post.frontmatter.tags.map(tag => (
+			  <span class="tag">{tag}</span>
+			)) : <span class="tag">{post.frontmatter.tags}</span>}
+		  </div>
 	</header>
 	<p>{post.frontmatter.description}</p>
 	<a href={post.url}>Read more</a>
@@ -21,9 +26,18 @@ const { post } = Astro.props;
 	}
 
 	.post-preview {
-		padding-bottom: 2rem;
-		margin-bottom: 2rem;
-		border-bottom: 4px solid var(--theme-divider);
+		flex: 1 0 calc(50% - 16px);
+		margin: 8px;
+		margin-bottom: 24px;
+	}
+
+	.tag {
+		background-color: black;
+		color: white;
+		margin-right: 10px;
+		padding: 4px 8px;
+		border-radius: 2px;
+		font-size: 12px;
 	}
 
 	header {
